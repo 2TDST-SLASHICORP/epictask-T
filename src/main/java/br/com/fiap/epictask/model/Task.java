@@ -27,4 +27,8 @@ public class Task {
 	@Min(value=10, message = "{task.points.min}")
 	@Max(value=500, message = "{task.points.max}")
 	private int points; 
+	
+	@Min(value=0, message = "{task.status.min}")
+	@Max(value=100, message = "{task.status.max}")
+	private int status;
 }

@@ -10,7 +10,7 @@
 	<section class="card form">
 		<h2>Cadastrar Usu√°rio</h2>
 		
-		<form class="form-vertical" action="/user" method="post" th:object="${user}">
+		<form class="form-vertical" th:action="@{/user}" method="post" th:object="${user}">
 			<label for="name" class="hide">Nome</label>
 			<input 
 				type="text" 
@@ -22,6 +22,19 @@
 				autocomplete="off"		 
 			/>
 			<span class="error" th:errors="*{name}"></span>
+
+			<label for="githubuser" class="hide">Usu·rio do GitHub</label>
+			<input 
+				type="text" 
+				name="githubuser" 
+				id="githubuser" 
+				placeholder="usuario do github"
+				th:field="*{githubuser}"
+				th:classappend="${#fields.hasErrors('githubuser')}?invalid"	
+				autocomplete="off"		 
+			/>
+			<span class="error" th:errors="*{githubuser}"></span>
+
 			
 			<label for="email" class="hide">E-mail</label>
 			<input 

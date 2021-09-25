@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.epictask.model.User;
 import br.com.fiap.epictask.repository.UserRepository;
+import br.com.fiap.epictask.service.AuthenticationService;
 
 @Controller
 @RequestMapping("/user")
@@ -45,6 +46,11 @@ public class UserController {
 	@PostMapping
 	public String save(@Valid User user, BindingResult result, RedirectAttributes redirect) {
 		if(result.hasErrors()) return "user-form";
+		user.setPassword(
+					AuthenticationService
+					.getPasswordEncoder()
+					.encode(user.getPassword())
+		);
 		repository.save(user);
 		redirect.addFlashAttribute("message", messages.getMessage("newuser.success", null, LocaleContextHolder.getLocale()));
 		return "redirect:user";
