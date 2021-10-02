@@ -3,7 +3,8 @@ CREATE TABLE task (
 	title varchar(200),
 	description varchar(200),
 	points int,
-	status int DEFAULT 0
+	status int DEFAULT 0,
+	user_id int
 );
 
 CREATE TABLE user (
@@ -14,17 +15,33 @@ CREATE TABLE user (
 	githubuser varchar(200)
 );
 
+CREATE TABLE role (
+	id int primary key auto_increment,
+	name varchar(200)
+);
+
+INSERT INTO role (name) VALUES ('ROLE_ADMIN'), ('ROLE_USER');
+
+CREATE TABLE user_roles (
+	user_id int,
+	roles_id int
+);
+
+INSERT INTO user_roles VALUES (1, 1), (2,2), (3, 2);
+
+
 INSERT INTO user (name, email, password, githubuser) VALUES
 ('Joao Carlos', 'joao@gmail.com', '$2a$12$Yce89ySyGptRxj10aJqLiu.islz/wWCs7JDzFITb9x.HmWIoFik7a', 'joaocarloslima'),
-('Carla Lopes', 'carla@gmail.com', '123', 'carla'),
-('Fabio Cabrini', 'fabio@fiap.com.br', '123', 'marcos');
+('Carla Lopes', 'carla@gmail.com', '$2a$12$Yce89ySyGptRxj10aJqLiu.islz/wWCs7JDzFITb9x.HmWIoFik7a', 'carla'),
+('Fabio Cabrini', 'fabio@fiap.com.br', '$2a$12$Yce89ySyGptRxj10aJqLiu.islz/wWCs7JDzFITb9x.HmWIoFik7a', 'marcos');
 
 
-INSERT INTO task (title, description, points, status) VALUES(
+INSERT INTO task (title, description, points, status, user_id) VALUES(
 	'Criar banco de dados',
 	'Criar bd oracle na nuvem',
 	300,
-	10
+	10,
+	1
 );
 
 INSERT INTO task (title, description, points, status) VALUES(
@@ -34,10 +51,11 @@ INSERT INTO task (title, description, points, status) VALUES(
 	60
 );
 
-INSERT INTO task (title, description, points, status) VALUES(
+INSERT INTO task (title, description, points, status, user_id) VALUES(
 	'Modelagem de dados',
 	'Criar modelo lógico dos dados',
 	200,
-	95
+	95,
+	2
 );
 
