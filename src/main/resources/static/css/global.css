@@ -8,6 +8,7 @@
 }
 
 body{
+	overflow: hidden;
 	margin-left: 2rem;
 	background: #181B21;
 	font-family: Montserrat;
@@ -71,6 +72,7 @@ h1{
 
 button,
 .button{
+	display: flex;
 	background: #25282B;
 	box-shadow: -2px -2px 4px rgba(98, 97, 97, 0.25), 2px 2px 4px #161616;
 	border-radius: 7px;
